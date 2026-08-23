@@ -1,0 +1,11 @@
+version: 2
+sources:
+  - name: landing
+    catalog: dbw_healthcare_platform
+    schema: bronze
+    tables:
+      - name: raw_patients
+      - name: raw_encounters
+      - name: raw_lab_results
+      - name: raw_claims
+      - name: raw_facility_ops

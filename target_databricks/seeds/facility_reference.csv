@@ -1,0 +1,7 @@
+facility_id,facility_name,facility_type,state,bed_count,cms_rating
+FAC01,Sunrise Senior Living,SNF,MA,120,4
+FAC02,Oakwood Health Center,SNF,IL,85,3
+FAC03,Desert Valley Rehab,SNF,AZ,95,5
+FAC04,Gulf Coast Care,SNF,TX,150,3
+FAC05,Evergreen Nursing,SNF,WA,110,4
+FAC06,Mountain View Recovery,SNF,CO,75,5
