@@ -1,0 +1,16 @@
+icd10_code,description,category,drg_weight
+S72.141A,Displaced intertrochanteric fracture of right femur,Orthopedic,1.85
+I50.9,Heart failure unspecified,Cardiology,1.42
+J18.9,Pneumonia unspecified organism,Pulmonology,1.15
+N18.3,Chronic kidney disease stage 3,Nephrology,0.95
+E11.65,Type 2 DM with hyperglycemia,Endocrinology,1.05
+I10,Essential hypertension,Cardiology,0.75
+E78.5,Hyperlipidemia unspecified,Cardiology,0.65
+D50.9,Iron deficiency anemia unspecified,Hematology,0.88
+G47.33,Obstructive sleep apnea,Pulmonology,0.92
+M79.3,Panniculitis unspecified,Dermatology,0.55
+Z87.39,Personal history of other diseases,General,0.30
+K21.0,GERD with esophagitis,Gastroenterology,0.72
+F32.9,Major depressive disorder,Psychiatry,0.85
+J44.1,COPD with acute exacerbation,Pulmonology,1.35
+M54.5,Low back pain,Orthopedic,0.68

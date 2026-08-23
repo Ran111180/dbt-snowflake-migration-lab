@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: landing
+    database: DBT_MIGRATION_LAB
+    schema: LANDING
+    tables:
+      - name: raw_patients
+        description: "Patient demographics, diagnoses, medications, vitals - all VARIANT"
+      - name: raw_encounters
+        description: "Clinical encounters with procedures, charges, providers"
+      - name: raw_lab_results
+        description: "Lab panels with multiple analytes per result"
+      - name: raw_claims
+        description: "Billing claims with line items and denial info"
+      - name: raw_facility_ops
+        description: "IoT/sensor operational events from facilities"

@@ -1,0 +1,50 @@
+name: dbt_migration_lab
+version: '1.0.0'
+config-version: 2
+profile: dbt_migration_lab
+
+model-paths: ["models"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+seed-paths: ["seeds"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  dbt_migration_lab:
+    staging:
+      +schema: bronze
+      +materialized: view
+      +tags: ['staging', 'bronze']
+    intermediate:
+      +schema: silver
+      +materialized: table
+      +tags: ['intermediate', 'silver']
+    marts:
+      +schema: gold
+      +materialized: incremental
+      +tags: ['marts', 'gold']
+    utilities:
+      +schema: silver
+      +materialized: ephemeral
+      +tags: ['utility']
+    advanced:
+      +schema: silver
+      +materialized: table
+      +tags: ['advanced']
+
+vars:
+  lookback_days: 30
+  current_date_override: null
+  default_facility: 'FAC01'
+  scd_valid_to: '9999-12-31'
+  critical_lab_threshold: 2.0
+  los_short_stay: 7
+  los_long_stay: 60
+
+seeds:
+  dbt_migration_lab:
+    +schema: seeds
