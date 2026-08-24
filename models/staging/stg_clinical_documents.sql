@@ -5,8 +5,7 @@ WITH parsed AS (
   SELECT
     raw_data:patient_id::STRING AS patient_id,
     raw_data:encounter_id::STRING AS encounter_id,
-    f.value AS document,
-    f.index AS doc_idx
+    f.value AS document
   FROM {{ source('landing', 'raw_encounters') }},
     LATERAL FLATTEN(input => raw_data:documents) f
 ),
@@ -17,8 +16,7 @@ sections AS (
     document:doc_type::STRING AS document_type,
     document:title::STRING AS title,
     s.value:section_name::STRING AS section_name,
-    s.value:content::STRING AS section_content,
-    s.index AS section_idx
+    s.value:content::STRING AS section_content
   FROM parsed,
     LATERAL FLATTEN(input => document:sections) s
 )
@@ -30,7 +28,6 @@ SELECT
   section_name,
   LEFT(section_content, 500) AS content_preview,
   LENGTH(section_content) AS content_length,
-  section_idx + 1 AS section_number,
   IFF(CONTAINS(section_content, 'STAT'), TRUE, FALSE) AS is_urgent
 FROM sections
 WHERE section_content IS NOT NULL

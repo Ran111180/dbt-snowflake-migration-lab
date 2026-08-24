@@ -15,14 +15,20 @@ SELECT
   GROUPING(claim_status) AS is_status_rollup,
   GROUPING_ID(claim_type, payer_name, claim_status) AS grouping_level
 FROM {{ ref('stg_claims') }}
-GROUP BY GROUPING SETS (
-  (claim_type, payer_name, claim_status),
-  (claim_type, payer_name),
-  (claim_type),
-  (payer_name),
-  ()
-)
-HAVING COUNT(*) > 0
-ORDER BY
+GROUP BY
+  GROUPING SETS (
+    (claim_type, payer_name, claim_status),
+    (claim_type, payer_name),
+    (
+      claim_type
+    ),
+    (
+      payer_name
+    ),
+    ()
+  )
+HAVING
+  COUNT(*) > 0
+ORDER BY 1 NULLS LAST,
   claim_type NULLS LAST,
   payer_name NULLS LAST

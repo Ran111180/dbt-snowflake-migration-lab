@@ -3,14 +3,10 @@
 
 SELECT
   raw_data:patient_id::STRING AS patient_id,
-  -- Type checks
-  TYPEOF(raw_data:patient_id) AS patient_id_type,
-  TYPEOF(raw_data:diagnoses) AS diagnoses_type,
-  TYPEOF(raw_data:vitals) AS vitals_type,
   -- Validate expected structure
-  IS_OBJECT(raw_data:vitals) AS vitals_is_object,
-  IS_ARRAY(raw_data:diagnoses) AS diagnoses_is_array,
-  IS_NULL_VALUE(raw_data:discharge_date) AS discharge_is_null,
+  IFF(raw_data:vitals IS NOT NULL, TRUE, FALSE) AS vitals_is_present,
+  IFF(raw_data:diagnoses IS NOT NULL, TRUE, FALSE) AS diagnoses_is_present,
+  IFF(raw_data:discharge_date IS NULL, TRUE, FALSE) AS discharge_is_null,
   -- Schema completeness score
   (
     IFF(raw_data:patient_id IS NOT NULL, 1, 0) +
